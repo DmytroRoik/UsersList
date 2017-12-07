@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>User`s list</title>
+</head>
+<body>
+	<form action="">
+		<label for="">Ім'я:</label><br>
+		<input type="text"><br>
+
+		<label for="">Призвіще:</label><br>
+		<input type="text"><br>
+
+		<label for="">Age</label><br>
+		<input type="number"><br>
+
+		<label for="userSex">Стать</label><br>
+		<select name="" id="userSex">
+			<option value="male">Жіноча</option>
+			<option value="female">Чоловіча</option>
+		</select><br>
+
+		<label for="userProfession">Професія</label><br>
+		<input list="professionList" id="userProfession"><br>
+		<datalist id="professionList">
+			<option value="Агроном"></option>
+			<option value="Машиніст"></option>
+			<option value="Перекладач"></option>
+			<option value="Письменник"></option>
+			<option value="Програміст"></option>
+			<option value="Продавець"></option>
+			<option value="Логіст"></option>
+			<option value="Інструктор"></option>
+			<option value="Лікар"></option>
+		</datalist>
+
+		<label for="registrationDate">Дата реєстрації:</label><br>
+		<input type="date" id="registrationDate"><br>
+
+		<input type="submit" value="Зареєструвати">
+
+	</form>
+</body>
+</html>
