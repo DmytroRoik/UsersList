@@ -1,7 +1,7 @@
 var range={
 	 'form': '',
 	 'to' : ''
-}
+};
 (function () {
 	var calendarCountClicker=0;//для встановлення діапазону
 	var lastCalendarDate;
@@ -10,27 +10,36 @@ var range={
 		showAlways: true,
 		cssName: 'darkneon',
 		zIndex: 100,
+		
 		onClick: (function(el, cell, date, data) {
-			var currentDate=date.toLocaleDateString();
+			var currentDate=date;
 			if(lastCalendarDate==undefined||currentDate!=lastCalendarDate){
+				
 				calendarCountClicker++;
 				
 				if(calendarCountClicker%2==0)
 				{
-					console.log(currentDate);
-					console.log(lastCalendarDate);
-					
-					
+					if(lastCalendarDate<currentDate){
+					range.from=lastCalendarDate;
+					range.to=currentDate;
+					}
+					else{
+						range.from=currentDate;
+						range.to=lastCalendarDate;
+					}
+
+
+					var d=new Date(lastCalendarDate);
+					console.log(range);
+					drawChart ();											//download charts
+					console.log(currentDate>lastCalendarDate);
+					console.log("from:"+ lastCalendarDate);
 				}
 				lastCalendarDate=currentDate;
 			}
-				//el.val(date.toLocaleDateString());
-				
 			})
 });
-
 })();
-
 google.charts.load('current', {'packages':['corechart']});
 
 
@@ -51,6 +60,7 @@ function createUser(){
 
 //charts
 function drawChart () {
+	if(users.length===0)return;
 	var generalData = prepareUserData();//data for charts
 
 	var data1 = new google.visualization.DataTable();//chart for names
@@ -67,7 +77,7 @@ function drawChart () {
 		vAxis: { scaleType: 'mirrorLog' }
 	};
 	var chart1 = new google.visualization.Histogram(document.getElementById('chart0'));
-	chart.draw(data1, options1);
+	chart1.draw(data1, options1);
 
 	var data2 = new google.visualization.DataTable();//chart profession
 	data2.addColumn('string', 'profession');
@@ -79,7 +89,7 @@ function drawChart () {
 		title: 'User`s professions'
 	};
 	var chart2 = new google.visualization.PieChart(document.getElementById('chart1'));
-	chart.draw(data2, options2);
+	chart2.draw(data2, options2);
 
 	var data3 = new google.visualization.DataTable();//chart sex
 	data3.addColumn('string', 'Sex');
@@ -92,7 +102,7 @@ function drawChart () {
 		is3D: true
 	};
 	var chart3 = new google.visualization.PieChart(document.getElementById('chart2'));
-	chart.draw(data3, options3);
+	chart3.draw(data3, options3);
 
 var data4 = new google.visualization.DataTable();//chart for age
 data4.addColumn('number', 'Age');
@@ -108,36 +118,39 @@ var options4 = {
 	vAxis: { scaleType: 'mirrorLog' }
 };
 var chart4 = new google.visualization.Histogram(document.getElementById('chart3'));
-chart.draw(data4, options4);
+chart4.draw(data4, options4);
 }
 
 function prepareUserData () {
-	
 	let temp_name={},
 	temp_profession={},
 	temp_Sex={},
 	temp_Age={};
 
-	for(var i=0;i<users.length;i++){
-		if(users[i].first_name in temp_name){//name
-			temp_name[users[i].first_name] +=1;
-		}
-		else temp_name[users[i].first_name] =1;
+ 	var	temp_users=users.filter(function (user) {// filtered users
+ 		return user.registDate>=range.from&&user.registDate<=range.to;
+ 		});
 
-		if(users[i].profession in temp_profession){//profession
-			temp_profession[users[i].profession] +=1;
+	for(var i=0;i<temp_users.length;i++){
+		if(temp_users[i].first_name in temp_name){//name
+			temp_name[temp_users[i].first_name] +=1;
 		}
-		else temp_profession[users[i].profession] =1;
+		else temp_name[temp_users[i].first_name] =1;
 
-		if(users[i].sex in temp_Sex){//sex
+		if(temp_users[i].profession in temp_profession){//profession
+			temp_profession[temp_users[i].profession] +=1;
+		}
+		else temp_profession[temp_users[i].profession] =1;
+
+		if(temp_users[i].sex in temp_Sex){//sex
 			temp_Sex[users[i].sex] += 1;
 		}
-		else temp_name[users[i].sex] = 1;
+		else temp_name[temp_users[i].sex] = 1;
 
-		if(users[i].age.toString() in temp_Age){//age
-			temp_Age[users[i].age.toString()] +=1;
+		if(temp_users[i].age.toString() in temp_Age){//age
+			temp_Age[temp_users[i].age.toString()] +=1;
 		}
-		else temp_name.users[i]=1;
+		else temp_name.temp_users[i]=1;
 	}
 	var result={
 		'names' : temp_name,
