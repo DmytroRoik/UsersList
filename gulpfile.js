@@ -33,14 +33,13 @@ gulp.task('less',function () {
 gulp.task('scripts',function () {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-		'app/libs/ajax/dist/ajax.min.js'])
-	.pipe(concat('libs.min.js'))
+		'app/libs/glDatePicker.js'])
 	.pipe(uglify())
 	.pipe(gulp.dest('app/js'));
 })
 
 gulp.task('css-libs',function () {
-	return gulp.src('app/css/libs.css')
+	return gulp.src('app/css/glDatePicker.darkneon.css')
 	.pipe(cssnano())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(gulp.dest('app/css'));

@@ -3,19 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>User`s list</title>
+	
+<script src="js/jquery.min.js"></script>
+<script src="js/glDatePicker.js"></script>
+
+  <link rel="stylesheet" href="css/glDatePicker.darkneon.css">
+  <link rel="stylesheet" href="css/glDatePicker.default.css">
+  <link rel="stylesheet" href="css/main.css">
+
+ <script src="js/users.js" defer></script>
 </head>
 <body>
-	<form action="">
-		<label for="">Ім'я:</label><br>
-		<input type="text"><br>
+	<form action="#" id="registrForm">
+		<label for="userFirstName" > Ім'я:</label><br>
+		<input type="text" id="userFirstName"><br>
 
-		<label for="">Призвіще:</label><br>
-		<input type="text"><br>
+		<label for="userSecondName">Призвіще:</label><br>
+		<input type="text" id="userSecondName"><br>
 
-		<label for="">Age</label><br>
-		<input type="number"><br>
-
+		<label for="userAge"pattern="[0-9]{2}">Age</label><br>
+		<input type="number" id="userAge"><br>
 		<label for="userSex">Стать</label><br>
+
 		<select name="" id="userSex">
 			<option value="male">Жіноча</option>
 			<option value="female">Чоловіча</option>
@@ -36,10 +45,11 @@
 		</datalist>
 
 		<label for="registrationDate">Дата реєстрації:</label><br>
-		<input type="date" id="registrationDate"><br>
-
-		<input type="submit" value="Зареєструвати">
-
+		<input type="text"  id="registrationDate" glbp-id="registrDate"><br>
+		<div gldp-el="registrDate" class="dataPicker">
+		</div>
+	<input type="button" onclick="createUser()" value="Зареєструвати">
 	</form>
+	<div class="calendar" id="generalCalendar"></div>
 </body>
 </html>
