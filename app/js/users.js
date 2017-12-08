@@ -1,6 +1,6 @@
 var range={
-	 'form': '',
-	 'to' : ''
+	'form': '',
+	'to' : ''
 };
 (function () {
 	var calendarCountClicker=0;//для встановлення діапазону
@@ -20,25 +20,22 @@ var range={
 				if(calendarCountClicker%2==0)
 				{
 					if(lastCalendarDate<currentDate){
-					range.from=lastCalendarDate;
-					range.to=currentDate;
+						range.from=lastCalendarDate;
+						range.to=currentDate;
 					}
 					else{
 						range.from=currentDate;
 						range.to=lastCalendarDate;
 					}
-
-
 					var d=new Date(lastCalendarDate);
-					console.log(range);
+					console.log(users);
+
 					drawChart ();											//download charts
-					console.log(currentDate>lastCalendarDate);
-					console.log("from:"+ lastCalendarDate);
 				}
 				lastCalendarDate=currentDate;
 			}
-			})
-});
+		})
+	});
 })();
 google.charts.load('current', {'packages':['corechart']});
 
@@ -58,6 +55,47 @@ function createUser(){
 	$('#registrForm')[0].reset();
 }
 
+function prepareUserData () {
+	let temp_name={},
+	temp_profession={},
+	temp_Sex={},
+	temp_Age={};
+
+ 	var	temp_users=users.filter(function (user) {// filtered users
+ 		return user.registDate>=range.from.toLocaleDateString()&&user.registDate<=range.to.toLocaleDateString();
+ 	});
+
+ 	for(var i=0;i<temp_users.length;i++){
+		if(temp_users[i].first_name in temp_name){//name
+			temp_name[temp_users[i].first_name] +=1;
+		}
+		else temp_name[temp_users[i].first_name] =1;
+
+		if(temp_users[i].profession in temp_profession){//profession
+			temp_profession[temp_users[i].profession] +=1;
+		}
+		else temp_profession[temp_users[i].profession] =1;
+
+		if(temp_users[i].sex in temp_Sex){//sex
+			temp_Sex[users[i].sex] += 1;
+		}
+		else temp_Sex[temp_users[i].sex] = 1;
+
+		if(temp_users[i].age.toString() in temp_Age){//age
+			temp_Age[temp_users[i].age] +=1;
+		}
+		else temp_Age[temp_users[i].age]=1;
+	}
+	var result={
+		'names' : temp_name,
+		'professions' : temp_profession,
+		'sex' : temp_Sex,
+		'age' : temp_Age
+	};
+	return result;
+}
+
+
 //charts
 function drawChart () {
 	if(users.length===0)return;
@@ -70,20 +108,16 @@ function drawChart () {
 		data1.addRows([[key,generalData.names[key]]]);
 	}
 	var options1 = {
-		title: 'Age of Users',
-		legend: { position: 'none' },
-		colors: ['#e7711c'],
-		histogram: { lastBucketPercentile: 5 },
-		vAxis: { scaleType: 'mirrorLog' }
+		title: 'Name of Users',
 	};
-	var chart1 = new google.visualization.Histogram(document.getElementById('chart0'));
+	var chart1 = new google.visualization.ColumnChart(document.getElementById('chart0'));
 	chart1.draw(data1, options1);
 
 	var data2 = new google.visualization.DataTable();//chart profession
 	data2.addColumn('string', 'profession');
 	data2.addColumn('number', 'Count');
 	for(var key in generalData.professions){
-		data2.addRows([[key,generalData.profession[key]]]);
+		data2.addRows([[key,+generalData.professions[key]]]);
 	}
 	var options2 = {
 		title: 'User`s professions'
@@ -106,58 +140,16 @@ function drawChart () {
 
 var data4 = new google.visualization.DataTable();//chart for age
 data4.addColumn('number', 'Age');
-data4.addColumn('number', 'Count');
 for(var key in generalData.age){
-	data4.addRows([[ +key, +generalData.age[key]]]);
+	for(var i=0;i<generalData.age[key];i++){
+		data4.addRows([[ +key]]);
+	}
 }
 var options4 = {
-	title: 'Age of Users',
-	legend: { position: 'none' },
-	colors: ['#e7711c'],
-	histogram: { lastBucketPercentile: 5 },
-	vAxis: { scaleType: 'mirrorLog' }
+	title: 'User`s Age',
+	hAxis: {title: 'Age', minValue: 0},
+	legend: 'none'
 };
 var chart4 = new google.visualization.Histogram(document.getElementById('chart3'));
 chart4.draw(data4, options4);
-}
-
-function prepareUserData () {
-	let temp_name={},
-	temp_profession={},
-	temp_Sex={},
-	temp_Age={};
-
- 	var	temp_users=users.filter(function (user) {// filtered users
- 		return user.registDate>=range.from&&user.registDate<=range.to;
- 		});
-
-	for(var i=0;i<temp_users.length;i++){
-		if(temp_users[i].first_name in temp_name){//name
-			temp_name[temp_users[i].first_name] +=1;
-		}
-		else temp_name[temp_users[i].first_name] =1;
-
-		if(temp_users[i].profession in temp_profession){//profession
-			temp_profession[temp_users[i].profession] +=1;
-		}
-		else temp_profession[temp_users[i].profession] =1;
-
-		if(temp_users[i].sex in temp_Sex){//sex
-			temp_Sex[users[i].sex] += 1;
-		}
-		else temp_name[temp_users[i].sex] = 1;
-
-		if(temp_users[i].age.toString() in temp_Age){//age
-			temp_Age[temp_users[i].age.toString()] +=1;
-		}
-		else temp_name.temp_users[i]=1;
-	}
-	var result={
-		'names' : temp_name,
-		'professions' : temp_profession,
-		'sex' : temp_Sex,
-		'Age' : temp_Age
-	};
-	console.log(result);
-	return result;
 }
