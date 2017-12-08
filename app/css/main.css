@@ -4,3 +4,7 @@
 #generalCalendar {
   border: 1px solid red;
   width: 30%; }
+
+.charts {
+  width: 200px;
+  height: 200px; }

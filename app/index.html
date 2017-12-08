@@ -4,14 +4,17 @@
 	<meta charset="UTF-8">
 	<title>User`s list</title>
 	
-<script src="js/jquery.min.js"></script>
-<script src="js/glDatePicker.js"></script>
+	<script src="js/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="css/glDatePicker.darkneon.css">
-  <link rel="stylesheet" href="css/glDatePicker.default.css">
-  <link rel="stylesheet" href="css/main.css">
+	<script src="js/glDatePicker.js"></script>
+	<link rel="stylesheet" href="css/glDatePicker.darkneon.css">
+	<link rel="stylesheet" href="css/glDatePicker.default.css">
 
- <script src="js/users.js" defer></script>
+	<link rel="stylesheet" href="css/main.css">
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script src="js/users.js" defer ></script>
 </head>
 <body>
 	<form action="#" id="registrForm">
@@ -48,8 +51,22 @@
 		<input type="text"  id="registrationDate" glbp-id="registrDate"><br>
 		<div gldp-el="registrDate" class="dataPicker">
 		</div>
-	<input type="button" onclick="createUser()" value="Зареєструвати">
+		<input type="button" onclick="createUser()" value="Зареєструвати">
 	</form>
 	<div class="calendar" id="generalCalendar"></div>
+	<ul>
+		<li>
+			<div id="chart0" class="charts"></div>
+		</li>
+		<li>
+			<div id="chart1" class="charts"></div>
+		</li>
+		<li>
+			<div id="chart2" class="charts"></div>
+		</li>
+		<li>
+			<div id="chart3" class="charts"></div>
+		</li>
+	</ul>
 </body>
 </html>
