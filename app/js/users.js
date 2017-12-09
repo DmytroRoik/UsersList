@@ -14,6 +14,8 @@ module.init = function () {
 
 	users=loadDatafromLocalStorage();
 	if(users==null)users=[];
+	else Show_in_table();
+	console.log(users)
 
 	var calendarCountClicker=0;//для встановлення діапазону
 	var lastCalendarDate;
@@ -58,6 +60,7 @@ function createUser(){
 	}
 	users[users.length]=user;
 	localStorage.setItem('users', JSON.stringify(users));//save to localStorage
+	Show_in_table();
 	$('#registrForm')[0].reset();
 }
 
@@ -160,6 +163,17 @@ function drawChart () {
 	chart4.draw(data4, options4);
 }
 
+function Show_in_table () {
+	var tableBody=$('#tableUsersBody');
+	for(let i=0;i<users.length;i++){
+		var row=$('<tr></tr>');
+		for(var key in users[i]){
+			var td=$('<td></td>').text(users[i][key]);
+			row.append(td);
+		}
+		tableBody.append(row);
+	} 
+}
 return module;
 })();
 

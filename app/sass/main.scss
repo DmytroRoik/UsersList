@@ -1,14 +1,86 @@
+body{
+	padding-top: 10px;
+	background-image: url(https://www.intertops.eu/splashpagev2/images/site-background-smallest-optimized.jpg);
+-webkit-background-size: contain;
+background-size: contain;
+	background-color: grey;
+	color:white;
+	font-size: 30px;
+}
+ul{
+	list-style: none;
+}
+/*Form*/
+form{
+	min-width: 250px;
+	text-align: center;
+	display:inline-block;
+	label{
+		margin: 10px 2px;
+		font-size: 16px;
+	}
+	input,select{
+		padding: 10px;
+		width:200px;
+		border-radius: 10px;
+		text-align: center;
+	}
+}
+#registrBtn{
+	margin: 10px;
+	background-color: white;
+	transition: all .9s;
+	&:hover{
+		transform: scale(1.1);
+		background-color: green;
+		color:white;
+		font-size: 15px;
+	};
+}
+#dataPicker{
+	border:1px solid red;
+}
 
-#registrationDate{
-	width:400px;
+table{
+	border:1px solid yellow;
+	max-width: 700px;
+	border-collapse: separate;
+	border-spacing: 2px;
+	max-height: 400px;
+	td,th{
+		border:1px solid yellow;
+	}
+}
+#first_section{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+#chartsSections{
+
 }
 #generalCalendar{
-	border:1px solid red;
-	width: 30%;
-	float:left;
-	margin-left: 400px;
+	width:375px;
+	height: 0;
 }
 .charts{
-	width:400px;
-	height: 400px;
+	width:375px;
+	height: 375px;
+}
+#ChartList{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+
+
+	li {
+		&:first-child{
+			margin:2%;
+		}
+		margin: 2%;
+		overflow: hidden;
+	   border-radius:10px;
+		border:1px solid red;
+	}
 }

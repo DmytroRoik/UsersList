@@ -17,6 +17,7 @@
 	<script src="js/users.js" defer ></script>
 </head>
 <body>
+	<section id="first_section">
 	<form action="#" id="registrForm">
 		<label for="userFirstName" > Ім'я:</label><br>
 		<input type="text" id="userFirstName"><br>
@@ -29,8 +30,8 @@
 		<label for="userSex">Стать</label><br>
 
 		<select name="" id="userSex">
-			<option value="male">Жіноча</option>
-			<option value="female">Чоловіча</option>
+			<option value="female">Жіноча</option>
+			<option value="male">Чоловіча</option>
 		</select><br>
 
 		<label for="userProfession">Професія</label><br>
@@ -53,8 +54,27 @@
 		</div>
 		<input type="button" id="registrBtn" value="Зареєструвати">
 	</form>
-	<div class="calendar" id="generalCalendar"></div>
-	<ul>
+
+	<table>
+		<caption>Users</caption>
+				<thead>
+					<tr>
+						<th>First name</th>
+						<th>Second name</th>
+						<th>Age</th>
+						<th>Sex</th>
+						<th>Profession</th>
+						<th>Reg. Data</th>
+					</tr>
+				</thead>
+				<tbody id="tableUsersBody">
+				</tbody>
+	</table>
+</section>
+<section id="chartsSections">
+	
+	<ul id= "ChartList">
+		<li><div class="calendar" id="generalCalendar"></div></li>
 		<li>
 			<div id="chart0" class="charts"></div>
 		</li>
@@ -68,5 +88,6 @@
 			<div id="chart3" class="charts"></div>
 		</li>
 	</ul>
+	</section>
 </body>
 </html>
