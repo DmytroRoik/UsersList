@@ -33,12 +33,12 @@ module.init = function () {
 					if(lastCalendarDate<currentDate){
 						range.from=lastCalendarDate;
 						range.to=currentDate;
-						$('#dateRange').text('From: '+range.from.toLocaleDateString()+" to: "+range.to.toLocaleDateString());
 					}
 					else{
 						range.from=currentDate;
 						range.to=lastCalendarDate;
 					}
+					$('#dateRange').text('From: '+range.from.toLocaleDateString()+" to: "+range.to.toLocaleDateString());
 					drawChart ();											//download charts
 				}
 				lastCalendarDate=currentDate;
