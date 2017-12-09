@@ -59,6 +59,9 @@ function createUser(){
 		profession: $('#userProfession').val(),
 		registDate: $('#registrationDate').val()
 	}
+	for(var key in user){
+		if(user[key]=="")return;
+	}
 	users[users.length]=user;
 	localStorage.setItem('users', JSON.stringify(users));//save to localStorage
 	Show_in_table();
