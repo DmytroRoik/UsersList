@@ -1,11 +1,22 @@
-var range={
+var USERS=(function () {
+	var module={};
+	var users=[];
+
+	var range={
 	'form': '',
 	'to' : ''
-};
-(function () {
+	};
+
+module.init = function () {
+	google.charts.load('current', {'packages':['corechart']});//for charts
+	$('#registrBtn').on('click',createUser);
+	$('input#registrationDate').glDatePicker();//add datePicker
+
+	users=loadDatafromLocalStorage();
+	if(users==null)users=[];
+
 	var calendarCountClicker=0;//для встановлення діапазону
 	var lastCalendarDate;
-	$('input#registrationDate').glDatePicker();//add datePicker
 	$('#generalCalendar').glDatePicker({			//add calendar
 		showAlways: true,
 		cssName: 'darkneon',
@@ -14,9 +25,7 @@ var range={
 		onClick: (function(el, cell, date, data) {
 			var currentDate=date;
 			if(lastCalendarDate==undefined||currentDate!=lastCalendarDate){
-				
 				calendarCountClicker++;
-				
 				if(calendarCountClicker%2==0)
 				{
 					if(lastCalendarDate<currentDate){
@@ -27,21 +36,17 @@ var range={
 						range.from=currentDate;
 						range.to=lastCalendarDate;
 					}
-					var d=new Date(lastCalendarDate);
-					console.log(users);
-
 					drawChart ();											//download charts
 				}
 				lastCalendarDate=currentDate;
 			}
 		})
 	});
-})();
-google.charts.load('current', {'packages':['corechart']});
+}
 
-
-var users=[];
-
+function loadDatafromLocalStorage () {
+	return JSON.parse(localStorage.getItem('users'));
+}
 function createUser(){
 	var user={
 		first_name: $('#userFirstName').val(),
@@ -52,6 +57,7 @@ function createUser(){
 		registDate: $('#registrationDate').val()
 	}
 	users[users.length]=user;
+	localStorage.setItem('users', JSON.stringify(users));//save to localStorage
 	$('#registrForm')[0].reset();
 }
 
@@ -138,18 +144,23 @@ function drawChart () {
 	var chart3 = new google.visualization.PieChart(document.getElementById('chart2'));
 	chart3.draw(data3, options3);
 
-var data4 = new google.visualization.DataTable();//chart for age
-data4.addColumn('number', 'Age');
-for(var key in generalData.age){
-	for(var i=0;i<generalData.age[key];i++){
-		data4.addRows([[ +key]]);
+	var data4 = new google.visualization.DataTable();//chart for age
+	data4.addColumn('number', 'Age');
+	for(var key in generalData.age){
+		for(var i=0;i<generalData.age[key];i++){
+			data4.addRows([[ +key]]);
+		}
 	}
+	var options4 = {
+		title: 'User`s Age',
+		hAxis: {title: 'Age', minValue: 0},
+		legend: 'none'
+	};
+	var chart4 = new google.visualization.Histogram(document.getElementById('chart3'));
+	chart4.draw(data4, options4);
 }
-var options4 = {
-	title: 'User`s Age',
-	hAxis: {title: 'Age', minValue: 0},
-	legend: 'none'
-};
-var chart4 = new google.visualization.Histogram(document.getElementById('chart3'));
-chart4.draw(data4, options4);
-}
+
+return module;
+})();
+
+USERS.init();
