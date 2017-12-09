@@ -37,10 +37,6 @@ form{
 		font-size: 15px;
 	};
 }
-#dataPicker{
-	border:1px solid red;
-}
-
 table{
 	border:1px solid yellow;
 	max-width: 700px;
@@ -50,29 +46,32 @@ table{
 	td,th{
 		border:1px solid yellow;
 	}
+	tr{
+		font-size: 24px;
+	}
 }
 #first_section{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 }
-#chartsSections{
-
+#dateRange{
+	text-align: center;
+	margin: 10px;
 }
 #generalCalendar{
 	width:375px;
 	height: 0;
 }
 .charts{
-	width:375px;
-	height: 375px;
+	min-width:375px;
+	min-height: 375px;
 }
 #ChartList{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
-
 
 	li {
 		&:first-child{
@@ -81,6 +80,5 @@ table{
 		margin: 2%;
 		overflow: hidden;
 	   border-radius:10px;
-		border:1px solid red;
 	}
 }

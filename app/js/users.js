@@ -33,6 +33,7 @@ module.init = function () {
 					if(lastCalendarDate<currentDate){
 						range.from=lastCalendarDate;
 						range.to=currentDate;
+						$('#dateRange').text('From: '+range.from.toLocaleDateString()+" to: "+range.to.toLocaleDateString());
 					}
 					else{
 						range.from=currentDate;
@@ -148,23 +149,21 @@ function drawChart () {
 	chart3.draw(data3, options3);
 
 	var data4 = new google.visualization.DataTable();//chart for age
-	data4.addColumn('number', 'Age');
+	data4.addColumn('string', 'age');
+	data4.addColumn('number', 'Count');
 	for(var key in generalData.age){
-		for(var i=0;i<generalData.age[key];i++){
-			data4.addRows([[ +key]]);
-		}
+		data4.addRows([[key,generalData.age[key]]]);
 	}
 	var options4 = {
-		title: 'User`s Age',
-		hAxis: {title: 'Age', minValue: 0},
-		legend: 'none'
+		title: 'Age of Users',
 	};
-	var chart4 = new google.visualization.Histogram(document.getElementById('chart3'));
+	var chart4 = new google.visualization.ColumnChart(document.getElementById('chart3'));
 	chart4.draw(data4, options4);
 }
 
 function Show_in_table () {
 	var tableBody=$('#tableUsersBody');
+	tableBody.empty();
 	for(let i=0;i<users.length;i++){
 		var row=$('<tr></tr>');
 		for(var key in users[i]){
