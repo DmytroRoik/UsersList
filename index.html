@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>User`s list</title>
+	
+	<script src="js/jquery.min.js"></script>
+
+	<script src="js/glDatePicker.min.js"></script>
+	<link rel="stylesheet" href="css/glDatePicker.darkneon.css">
+	<link rel="stylesheet" href="css/glDatePicker.default.css">
+
+	<link rel="stylesheet" href="css/main.css">
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script src="js/users.js" defer ></script>
+</head>
+<body>
+	<section id="first_section">
+	<form action="#" id="registrForm">
+		<label for="userFirstName" > Ім'я:</label><br>
+		<input type="text" id="userFirstName"><br>
+
+		<label for="userSecondName">Призвіще:</label><br>
+		<input type="text" id="userSecondName"><br>
+
+		<label for="userAge">Вік</label><br>
+		<input type="number" id="userAge"><br>
+		<label for="userSex">Стать</label><br>
+
+		<select name="" id="userSex">
+			<option value="Жін.">Жіноча</option>
+			<option value="Чол.">Чоловіча</option>
+		</select><br>
+
+		<label for="userProfession">Професія</label><br>
+		<input list="professionList" id="userProfession"><br>
+		<datalist id="professionList">
+			<option value="Агроном"></option>
+			<option value="Машиніст"></option>
+			<option value="Перекладач"></option>
+			<option value="Письменник"></option>
+			<option value="Програміст"></option>
+			<option value="Продавець"></option>
+			<option value="Логіст"></option>
+			<option value="Інструктор"></option>
+			<option value="Лікар"></option>
+		</datalist>
+
+		<label for="registrationDate">Дата реєстрації:</label><br>
+		<input type="text"  id="registrationDate" glbp-id="registrDate"><br>
+		<div gldp-el="registrDate" class="dataPicker">
+		</div>
+		<input type="button" id="registrBtn" value="Зареєструвати">
+	</form>
+
+	<table>
+		<caption>Users</caption>
+				<thead>
+					<tr>
+						<th>Ім'я</th>
+						<th>Призвіще</th>
+						<th>Вік</th>
+						<th>Стать</th>
+						<th>Професія</th>
+						<th>Дата реєстрації</th>
+					</tr>
+				</thead>
+				<tbody id="tableUsersBody">
+				</tbody>
+	</table>
+</section>
+<section id="chartsSections">
+	<h3 id="dateRange"></h3>
+	<ul id= "ChartList">
+		<li><div class="calendar" id="generalCalendar"></div></li>
+		<li>
+			<div id="chart0" class="charts"></div>
+		</li>
+		<li>
+			<div id="chart1" class="charts"></div>
+		</li>
+		<li>
+			<div id="chart2" class="charts"></div>
+		</li>
+		<li>
+			<div id="chart3" class="charts"></div>
+		</li>
+	</ul>
+	</section>
+</body>
+</html>

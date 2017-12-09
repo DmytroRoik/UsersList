@@ -1,0 +1,101 @@
+body {
+  padding-top: 10px;
+  background-image: url(https://www.intertops.eu/splashpagev2/images/site-background-smallest-optimized.jpg);
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-color: grey;
+  color: white;
+  font-size: 30px; }
+
+ul {
+  list-style: none; }
+
+/*Form*/
+form {
+  min-width: 250px;
+  text-align: center;
+  display: inline-block; }
+  form label {
+    margin: 10px 2px;
+    font-size: 16px; }
+  form input, form select {
+    padding: 10px;
+    width: 200px;
+    -webkit-border-radius: 10px;
+            border-radius: 10px;
+    text-align: center; }
+
+#registrBtn {
+  margin: 10px;
+  background-color: white;
+  -webkit-transition: all .9s;
+  -o-transition: all .9s;
+  transition: all .9s; }
+  #registrBtn:hover {
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
+    background-color: green;
+    color: white;
+    font-size: 15px; }
+
+table {
+  border: 1px solid yellow;
+  max-width: 700px;
+  border-collapse: separate;
+  border-spacing: 2px;
+  max-height: 400px; }
+  table td, table th {
+    border: 1px solid yellow; }
+  table tr {
+    font-size: 24px; }
+
+#first_section {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around; }
+
+#dateRange {
+  text-align: center;
+  margin: 10px; }
+
+#generalCalendar {
+  width: 375px;
+  height: 0; }
+
+.charts {
+  min-width: 375px;
+  min-height: 375px; }
+
+#ChartList {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around; }
+  #ChartList li {
+    margin: 2%;
+    overflow: hidden;
+    -webkit-border-radius: 10px;
+            border-radius: 10px; }
+    #ChartList li:first-child {
+      margin: 2%; }
